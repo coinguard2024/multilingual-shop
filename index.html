@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoinGuard - Coin Authentication System</title>
+    <!-- Load translations first -->
+    <script src="translations.js"></script>
+    <!-- Then Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body x-data="{
+    currentLanguage: 'en',
+    get trans() {
+        return window.translations[this.currentLanguage] || window.translations['en'];
+    }
+}" :class="{ 'rtl': ['sa'].includes(currentLanguage) }">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Language Selector -->
+      <!-- Language Selector -->
+<div class="language-selector flex justify-end mb-4">
+    <!-- English -->
+    <img src="https://flagcdn.com/w40/gb.png" 
+         alt="English" 
+         @click="currentLanguage = 'en'"
+         class="cursor-pointer w-8 h-5 mx-1 transition-opacity duration-200 hover:opacity-100"
+         :class="{ 'opacity-100': currentLanguage === 'en', 'opacity-50': currentLanguage !== 'en' }">
+    
+    <!-- Russian -->
+    <img src="https://flagcdn.com/w40/ru.png" 
+         alt="Русский" 
+         @click="currentLanguage = 'ru'"
+         class="cursor-pointer w-8 h-5 mx-1 transition-opacity duration-200 hover:opacity-100"
+         :class="{ 'opacity-100': currentLanguage === 'ru', 'opacity-50': currentLanguage !== 'ru' }">
+    
+    <!-- Spanish -->
+    <img src="https://flagcdn.com/w40/es.png" 
+         alt="Español" 
+         @click="currentLanguage = 'es'"
+         class="cursor-pointer w-8 h-5 mx-1 transition-opacity duration-200 hover:opacity-100"
+         :class="{ 'opacity-100': currentLanguage === 'es', 'opacity-50': currentLanguage !== 'es' }">
+    
+    <!-- French -->
+    <img src="https://flagcdn.com/w40/fr.png" 
+         alt="Français" 
+         @click="currentLanguage = 'fr'"
+         class="cursor-pointer w-8 h-5 mx-1 transition-opacity duration-200 hover:opacity-100"
+         :class="{ 'opacity-100': currentLanguage === 'fr', 'opacity-50': currentLanguage !== 'fr' }">
+    
+    <!-- Polish -->
+    <img src="https://flagcdn.com/w40/pl.png" 
+         alt="Polski" 
+         @click="currentLanguage = 'pl'"
+         class="cursor-pointer w-8 h-5 mx-1 transition-opacity duration-200 hover:opacity-100"
+         :class="{ 'opacity-100': currentLanguage === 'pl', 'opacity-50': currentLanguage !== 'pl' }">
+    
+    <!-- Czech -->
+    <img src="https://flagcdn.com/w40/cz.png" 
+         alt="Čeština" 
+         @click="currentLanguage = 'cs'"
+         class="cursor-pointer w-8 h-5 mx-1 transition-opacity duration-200 hover:opacity-100"
+         :class="{ 'opacity-100': currentLanguage === 'cs', 'opacity-50': currentLanguage !== 'cs' }">
+    
+    <!-- Ukrainian -->
+    <img src="https://flagcdn.com/w40/ua.png" 
+         alt="Українська" 
+         @click="currentLanguage = 'ua'"
+         class="cursor-pointer w-8 h-5 mx-1 transition-opacity duration-200 hover:opacity-100"
+         :class="{ 'opacity-100': currentLanguage === 'ua', 'opacity-50': currentLanguage !== 'ua' }">
+    
+    <!-- Arabic -->
+    <img src="https://flagcdn.com/w40/sa.png" 
+         alt="العربية" 
+         @click="currentLanguage = 'sa'"
+         class="cursor-pointer w-8 h-5 mx-1 transition-opacity duration-200 hover:opacity-100"
+         :class="{ 'opacity-100': currentLanguage === 'sa', 'opacity-50': currentLanguage !== 'sa' }">
+    
+    <!-- Hindi -->
+    <img src="https://flagcdn.com/w40/in.png" 
+         alt="हिंदी" 
+         @click="currentLanguage = 'in'"
+         class="cursor-pointer w-8 h-5 mx-1 transition-opacity duration-200 hover:opacity-100"
+         :class="{ 'opacity-100': currentLanguage === 'in', 'opacity-50': currentLanguage !== 'in' }">
+</div>
+
+        <!-- Hero Section -->
+        <header class="text-center mb-12">
+            <h1 x-text="trans.title" 
+                class="text-4xl md:text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            </h1>
+            <p x-text="trans.subtitle" 
+               class="text-xl text-gray-300">
+            </p>
+        </header>
+
+        <!-- Products Section -->
+        <section class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <template x-for="(product, index) in trans.products" :key="index">
+                <div class="product-card p-6 rounded-lg text-center">
+                    <img :src="product.image" :alt="product.name" class="mx-auto mb-4 rounded-lg">
+                    <h3 x-text="product.name" class="text-2xl font-bold mb-2 text-purple-300"></h3>
+                    <p x-text="product.description" class="text-gray-300"></p>
+                </div>
+            </template>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="mt-16 text-center">
+            <h2 x-text="trans.testimonialTitle" class="text-3xl font-bold mb-8"></h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <template x-for="(testimonial, index) in trans.testimonials" :key="index">
+                    <div class="bg-black bg-opacity-30 p-6 rounded-lg">
+                        <blockquote>
+                            <p x-text="testimonial.text" class="mb-2"></p>
+                            <footer x-text="testimonial.author" class="text-purple-300"></footer>
+                        </blockquote>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="mt-16">
+            <h2 x-text="trans.faqTitle" class="text-3xl font-bold text-center mb-8"></h2>
+            <div class="space-y-4">
+                <template x-for="(item, index) in trans.faq" :key="index">
+                    <div class="bg-black bg-opacity-30 p-6 rounded-lg">
+                        <h3 x-text="item.question" class="font-bold mb-2"></h3>
+                        <p x-text="item.answer"></p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="mt-16 text-center">
+            <button x-text="trans.contactButton" 
+                    class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+            </button>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-center">
+            <p x-text="trans.footer"></p>
+        </footer>
+    </div>
+</body>
+</html>
